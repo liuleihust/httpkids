@@ -22,6 +22,11 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.LastHttpContent;
 
+/**
+* @Description: 静态请求处理器
+* @Author: Liulei
+* @Date: 2019/5/15
+*/
 public class StaticRequestHandler implements IRequestHandler {
 
 	private String staticRoot;

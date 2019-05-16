@@ -16,7 +16,14 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 
+/*
+  @Sharable 注解的作用：
+  说明ChannelHandler对象 可以在多个Channel 共享使用
+ */
 @Sharable
+/*
+
+ */
 public class MessageCollector extends ChannelInboundHandlerAdapter {
 	private final static Logger LOG = LoggerFactory.getLogger(MessageCollector.class);
 

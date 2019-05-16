@@ -21,6 +21,9 @@ import io.netty.handler.codec.http.cookie.ServerCookieEncoder;
 
 public class KidsContext {
 
+	/*
+	 ChannelHandlerContext  使得 ChannelHandler 能够与 ChannelPipe 交互
+	 */
 	private ChannelHandlerContext ctx;
 	private ITemplateEngine templateEngine;
 	private String contextRoot;
