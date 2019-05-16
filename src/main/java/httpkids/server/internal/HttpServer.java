@@ -47,7 +47,13 @@ public class HttpServer {
 			@Override
 			public void initChannel(SocketChannel ch) throws Exception {
 				var pipe = ch.pipeline();
+				/*
+				   Netty 超时控制 handler,用于读取数据的时候的超时，如果在设置时间段内都没有数据读取 ，就会引发查实，然后关闭当前 channel,
+				 */
 				pipe.addLast(new ReadTimeoutHandler(10));
+				/*
+					HttpServerCodec 解析 http 协议 https://blog.csdn.net/woshizw27/article/details/87999137
+				 */
 				pipe.addLast(new HttpServerCodec());
 				pipe.addLast(new HttpObjectAggregator(1 << 30)); // max_size = 1g
 				pipe.addLast(new ChunkedWriteHandler());

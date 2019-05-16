@@ -22,7 +22,7 @@ import io.netty.handler.codec.http.FullHttpRequest;
  */
 @Sharable
 /*
-
+ 业务线程池
  */
 public class MessageCollector extends ChannelInboundHandlerAdapter {
 	private final static Logger LOG = LoggerFactory.getLogger(MessageCollector.class);
