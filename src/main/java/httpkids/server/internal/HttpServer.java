@@ -55,11 +55,22 @@ public class HttpServer {
 					HttpServerCodec 解析 http 协议 https://blog.csdn.net/woshizw27/article/details/87999137
 				 */
 				pipe.addLast(new HttpServerCodec());
+				/*
+				 HttpServerCodec 只能获取uri 中的参数， 当使用post 方式请求服务器的时候，对应的参数保存在 message body  中，
+				 所以需要加上 HttpObjectAggregator ，
+
+				 */
 				pipe.addLast(new HttpObjectAggregator(1 << 30)); // max_size = 1g
+				/*
+				 传送大文件
+				 */
 				pipe.addLast(new ChunkedWriteHandler());
 				pipe.addLast(collector);
 			}
 		});
+		/*
+		ChannelOption 的 含义 ：https://www.cnblogs.com/googlemeoften/p/6082785.html
+		 */
 		bootstrap.option(ChannelOption.SO_BACKLOG, 100).option(ChannelOption.SO_REUSEADDR, true)
 				.option(ChannelOption.TCP_NODELAY, true).childOption(ChannelOption.SO_KEEPALIVE, true);
 		serverChannel = bootstrap.bind(this.ip, this.port).channel();
